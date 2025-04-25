@@ -1,0 +1,16 @@
+.main-layout {
+  display: flex;                  // Yonma-yon (gorizontal) joylashuv
+  min-height: 100vh;              // Ekran balandligi bo'yicha to'liq minimum balandlik
+  
+  .sidebar {
+    width: 250px;                 // Yon panel kengligi
+    background-color: #1a1a1a;    // Qora fon
+    color: white;                 // Matn rangi — oq
+  }
+
+  .main-content {
+    flex: 1;                      // Qolgan joyni egallaydi
+    padding: 1.5rem;              // Ichki bo'shliq
+    background-color: #f9f9f9;    // Yorqin fon
+  }
+}
