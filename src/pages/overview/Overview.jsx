@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { ArrowRight, Eye } from 'lucide-react';
-import styles from './overview.module.scss';
+import styles from './Overview.module.scss';
 import { useCollectionsData } from '../../hooks/useCollections';
 
 const parseAmount = (val) => parseFloat(String(val).replace(/,/g, '')) || 0;
