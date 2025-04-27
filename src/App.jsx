@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 function App() {
   const { user, isAuth } = useSelector((store) => store.user);
   console.log(user);
-  const rotues = createBrowserRouter([
+  const routes = createBrowserRouter([
     {
       path: "/",
       element: (
@@ -61,7 +61,7 @@ function App() {
       element: user ? <Navigate to="/" /> : <Signup />,
     },
   ]);
-  return <RouterProvider router={rotues} />;
+  return <RouterProvider router={routes} />;
 }
 
 export default App;
