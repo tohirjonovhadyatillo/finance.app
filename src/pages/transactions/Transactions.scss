@@ -1,129 +1,98 @@
 .transactions {
   padding: 2rem;
-  background-color: #f7f9fc;
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+  }
 
-    h2 {
-      font-size: 24px;
-      font-weight: 600;
-      color: #333;
-    }
+  &__controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
 
-    .transactions__controls {
-      display: flex;
-      gap: 1rem;
+  &__search {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 250px;
+  }
 
-      .search {
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        min-width: 250px;
-        font-size: 14px;
-        transition: border 0.3s ease;
+  &__dropdowns {
+    display: flex;
+    gap: 1rem;
+  }
 
-        &:focus {
-          border-color: #007bff;
-          outline: none;
-        }
-      }
+  &__sort,
+  &__filter {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 
-      .dropdowns {
-        display: flex;
-        gap: 1rem;
-
-        .dropdown {
-          select, button {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            background: white;
-            cursor: pointer;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 14px;
-            transition: border 0.3s ease;
-
-            &:focus {
-              border-color: #007bff;
-              outline: none;
-            }
-
-            &:hover {
-              border-color: #007bff;
-            }
-          }
-        }
-      }
-    }
+  &__table-wrapper {
+    overflow-x: auto;
   }
 
   &__table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: #fff;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-    thead {
-      background: #f9f9f9;
+    th, td {
       text-align: left;
-
-      th {
-        padding: 1rem;
-        font-weight: 600;
-        font-size: 14px;
-        color: #333;
-      }
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
     }
 
-    tbody {
-      tr {
-        border-bottom: 1px solid #eee;
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
 
-        td {
-          padding: 1rem;
-          font-size: 14px;
-        }
+    .positive {
+      color: green;
+      font-weight: 600;
+    }
 
-        .positive {
-          color: #2ecc71;
-          font-weight: 600;
-        }
-
-        .negative {
-          color: #e74c3c;
-          font-weight: 600;
-        }
-      }
+    .negative {
+      color: red;
+      font-weight: 600;
     }
   }
 
-  &__pagination {
-    margin-top: 2rem;
+  &__user {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
 
-    button {
-      background: white;
-      border: 1px solid #ccc;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-
-      &.active {
-        background: #333;
-        color: white;
-      }
+    &-image {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
     }
+
+    &-placeholder {
+      width: 40px;
+      height: 40px;
+      background-color: #ddd;
+      border-radius: 50%;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 2rem;
+    color: #777;
+    font-size: 1rem;
   }
 }

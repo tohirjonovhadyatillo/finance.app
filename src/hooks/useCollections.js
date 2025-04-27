@@ -59,7 +59,6 @@ export const useCollectionsData = () => {
   return { data, isPending };
 };
 
-// transactions uchun alohida hook
 export const useTransactions = () => {
   const { data, isPending } = useCollectionsData();
 

@@ -4,64 +4,64 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import MainLayout from "./layout/MainLayout";
 import {
-  Budget,
-  RecurringBills,
+  Budgets,
   Login,
-  Signup,
   Overview,
   Pots,
+  RecurringBills,
+  Signup,
   Transactions,
 } from "./pages";
 
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/config";
-import { login } from "./app/features/userSlice";
+import MainLayout from "./layout/MainLayout";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import { useSelector } from "react-redux";
 
 function App() {
-  const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const [authChecked, setAuthChecked] = useState(false);
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      dispatch(login(user));
-      setAuthChecked(true);
-    });
-
-    return () => unsub();
-  }, [dispatch]);
-
-  if (!authChecked) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  const routes = createBrowserRouter([
+  const { user, isAuth } = useSelector((store) => store.user);
+  console.log(user);
+  const rotues = createBrowserRouter([
     {
       path: "/",
-      element: user ? <MainLayout /> : <Navigate to="/login" />,
+      element: (
+        <ProtectedRoutes user={user}>
+          <MainLayout />
+        </ProtectedRoutes>
+      ),
       children: [
-        { index: true, element: <Overview /> },
-        { path: "pots", element: <Pots /> },
-        { path: "transactions", element: <Transactions /> },
-        { path: "budget", element: <Budget /> },
-        { path: "recurringBills", element: <RecurringBills /> },
+        {
+          index: true,
+          element: <Overview />,
+        },
+        {
+          path: "/budgets",
+          element: <Budgets />,
+        },
+        {
+          path: "/pots",
+          element: <Pots />,
+        },
+        {
+          path: "/transactions",
+          element: <Transactions />,
+        },
+        {
+          path: "/recurringBills",
+          element: <RecurringBills />,
+        },
       ],
     },
     {
-      path: "login",
+      path: "/login",
       element: user ? <Navigate to="/" /> : <Login />,
     },
     {
-      path: "signup",
+      path: "/signup",
       element: user ? <Navigate to="/" /> : <Signup />,
     },
   ]);
-
-  return <RouterProvider router={routes} />;
+  return <RouterProvider router={rotues} />;
 }
 
 export default App;
