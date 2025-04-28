@@ -1,34 +1,28 @@
-import { auth } from "../firebase/config";
+
 import { signOut } from "firebase/auth";
-import { useFireStore } from "./useFireStore";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { logOut } from "../app/features/userSlice";
+import { auth } from "../firebase/config";
+import { logout as _logout } from "../app/features/userSlice";
+import { useState } from "react";
 
-export const useSignOut = () => {
-  const [isPending, setIsPending] = useState(false);
-  const { updateDocument } = useFireStore("users");
+export const useLogout = () => {
   const dispatch = useDispatch();
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
 
-  const signout = async () => {
+  const logout = async () => {
+    setIsPending(true);
+    setError(null);
     try {
-      setIsPending(true);
-      const user = auth.currentUser;
-
-      if (!user) {
-        throw new Error("user not found, try again");
-      }
-
-      const displayName = user.displayName || "Anonymous";
-
-      await updateDocument(user.uid, { isOnline: false });
       await signOut(auth);
-      dispatch(logOut());
-    } catch (error) {
+      dispatch(_logout());
+    } catch (err) {
+      console.error("Logout error:", err?.message || "Something went wrong");
+      setError(err?.message || "Something went wrong");
     } finally {
       setIsPending(false);
     }
   };
 
-  return { signout, isPending };
+  return { logout, isPending, error };
 };

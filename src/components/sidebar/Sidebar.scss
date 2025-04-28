@@ -1,62 +1,118 @@
 .sidebar {
-  width: 250px;
-  background-color: #1e1e1e;
+  background-color: #1e1e23;
   color: white;
-  padding: 1.5rem;
+  width: 300px;
+  height: 100vh;
+  transition: 0.3s;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
+  padding: 1.5rem 1rem;
+  z-index: 1000;
+
 
   &__logo {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
-    color: #fff;
   }
 
   &__menu {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     padding: 0.75rem 1rem;
-    text-decoration: none;
-    color: #ccc;
     border-radius: 0.5rem;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    color: #c1c1c1;
+    transition: background 0.2s;
 
     &:hover {
-      background-color: #333;
-      color: #fff;
+      background-color: #2b2b31;
     }
 
     &.active {
-      background-color: #444;
-      color: #fff;
-    }
+      background-color: #f5f5f5;
+      color: #1e1e23;
 
-    .sidebar__icon {
-      width: 20px;
-      height: 20px;
+      .sidebar__icon {
+        filter: brightness(0) saturate(100%) invert(24%) sepia(97%)
+          saturate(750%) hue-rotate(118deg) brightness(89%) contrast(85%);
+      }
     }
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
   }
 
   &__minimize {
     margin-top: auto;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    color: #ccc;
+    gap: 1rem;
     cursor: pointer;
+    color: #c1c1c1;
 
     &:hover {
-      color: #fff;
+      color: white;
     }
   }
+}
+.sidebar__item.active {
+  background-color: #f5f5f5;
+  color: #1e1e23;
+
+  .sidebar__icon {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(97%) saturate(750%)
+      hue-rotate(118deg) brightness(89%) contrast(85%);
+  }
+}
+
+.sidebar.toggle-bar {
+  width: 88px;
+}
+
+.sidebar__minimize {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.logout-btn {
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #ff4d4f; 
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: #ff7875;
+  }
+
+  &:disabled {
+    background-color: #f1f1f1; 
+    color: #999;
+    cursor: not-allowed;
+  }
+}
+
+.logout-btn span {
+  display: inline-block;
+  font-size: 14px;
 }

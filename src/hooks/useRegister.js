@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 
 export const useRegister = () => {
   const dispatch = useDispatch();
-
   const [user, setUser] = useState(null);
   const [isPending, setIsPending] = useState(false);
 
@@ -16,11 +15,9 @@ export const useRegister = () => {
       const req = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, {
         displayName,
-        photoURL:
-          "https://api.dicebear.com/9.x/croodles/svg?seed=" + displayName,
+        photoURL: "https://api.dicebear.com/9.x/croodles/svg?seed=" + displayName,
       });
       const user = req.user;
-      console.log(user);
       dispatch(login(user));
       setUser(user);
     } catch (err) {

@@ -1,18 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRegister } from "../../hooks/useRegister";
 import "./Signup.scss";
 
 function Signup() {
   const { register, isPending } = useRegister();
-
+  const [password, setPassword] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const displayName = formData.get("displayName");
     const email = formData.get("email");
     const password = formData.get("password");
 
-    register(email, password, displayName);
+    register(email, password);
   };
 
   return (
@@ -41,13 +41,13 @@ function Signup() {
             </div>
           </div>
           <button className="auth-button" disabled={isPending}>
-            {isPending ? "Pending..." : "Sign Up"}
+            {isPending ? "Pending.." : "Sign Up"}
           </button>
         </form>
-        <div className="auth-footer">
+        <span className="auth-footer">
           <p>Already have an account?</p>
           <Link to="/login">Login</Link>
-        </div>
+        </span>
       </div>
     </div>
   );
